@@ -6,7 +6,7 @@
 @{
 }
 <h1>List of Department</h1>
-<a href="/department/create">Add New Department</a>
+<a asp-controller="Department" asp-action="Create">Add New Department</a>
 <table class="table">
     <thead>
         <tr>
@@ -23,7 +23,8 @@
                 <td>@m.Id</td>
                 <td>@m.Name</td>
                 <td>@m.Location</td>
-                <td> <a href="/department/delete/@m.Id" class="btn-danger btn">Delete</a>
+                <td> <a asp-controller="department" asp-action="delete" asp-route-id="@m.Id" class="btn-danger btn">Delete</a>
+                    <a asp-controller="department" asp-action="edit" asp-route-id="@m.Id" class="btn-warning btn">Edit</a>
                     </td>
             </tr>
         }

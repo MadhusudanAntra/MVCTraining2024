@@ -25,15 +25,19 @@ namespace Antra.Training.WebMVC.Controllers
         [HttpPost]
         public IActionResult Create(Department obj)
         {
-            try
+            if (ModelState.IsValid)
             {
-                departmentRepository.Insert(obj);
-                return RedirectToAction("Index");
+                try
+                {
+                    departmentRepository.Insert(obj);
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    return View(obj);
+                }
             }
-            catch (Exception ex)
-            {
-                return View(obj);
-            }
+            return View(obj);
         }
         [HttpGet]
         public IActionResult Delete(int id)
@@ -48,6 +52,26 @@ namespace Antra.Training.WebMVC.Controllers
             departmentRepository.Delete(obj.Id);
             return RedirectToAction("Index");
 
+        }
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var department = departmentRepository.GetById(id);
+            return View(department);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Department department)
+        {
+            try {
+            
+             departmentRepository.Update(department);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                return View(department);
+            }
         }
     }
 }

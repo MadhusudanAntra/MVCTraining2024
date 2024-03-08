@@ -1,0 +1,13 @@
+﻿<form asp-action="Create" asp-controller="Employee">
+    <div>
+        <label>
+            Name
+        </label>
+        <input type="text" name="Name" class="form-control"/>
+    </div>
+    <div>
+        <label>Choose Department</label>
+        <select name="DeptId" asp-items="ViewBag.Departments" class="form-control">
+        </select>
+    </div>
+</form>
